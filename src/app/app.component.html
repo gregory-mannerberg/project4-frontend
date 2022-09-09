@@ -1,4 +1,36 @@
-<button pButton type="button" label="Click" ></button>
-<input type="text" pInputText>
-<app-goal-list></app-goal-list>
+<p-menubar>
+  <ng-template pTemplate="start">
+      <input type="text" pInputText placeholder="Username" #username>
+      <button pButton type="button" label="Submit" (click)="changeUser(username.value)"></button>
+      <button pButton type="button" label="Add Goal" (click)="showDialog()"></button>
+  </ng-template>
+</p-menubar>
+<app-goal-list [user]="user"></app-goal-list>
+<p-dialog [(visible)]="display">
+  <div>
+      <label for="goal-name">Goal Name: </label>
+      <input id="goal-name" type="text" pInputText [(ngModel)]="newGoal.name" />
+  </div>
+  <div>
+      <label for="goal-description">Description: </label>
+      <input id="goal-description" type="text" pInputText [(ngModel)]="newGoal.description" />
+  </div>
+  <div>
+      <label for="goal-imageUrl">Image URL: </label>
+      <input type="text" pInputText [(ngModel)]="newGoal.imageUrl" />
+  </div>
+  <div>
+      <label for="goal-targetDate">Target Date: </label>
+      <input type="date" pInputText [(ngModel)]="newGoal.targetDate" />
+  </div>
+  <div>
+      <label for="goal-currentAmount">Current Savings: </label>
+      <input type="number" pInputText [(ngModel)]="newGoal.currentAmount" />
+  </div>
+  <div>
+      <label for="goal-targetAmount">Savings Goal: </label>
+      <input type="number" pInputText [(ngModel)]="newGoal.targetAmount" />
+  </div> 
+  <p-button label="Submit" (onClick)="addGoal()"></p-button>
+</p-dialog>
 <router-outlet></router-outlet>

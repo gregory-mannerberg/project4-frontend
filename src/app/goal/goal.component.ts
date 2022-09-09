@@ -18,7 +18,8 @@ export class GoalComponent implements OnInit {
     "imageUrl": "",
     "targetDate": new Date(),
     "targetAmount": 0,
-    "currentAmount": 0
+    "currentAmount": 0,
+    "username": ""
   };
 
   goalProgress: number = 0;
@@ -39,13 +40,19 @@ export class GoalComponent implements OnInit {
     this.updateGoal.targetDate = this.goal.targetDate;
     this.updateGoal.targetAmount = this.goal.targetAmount;
     this.updateGoal.currentAmount = this.goal.currentAmount;
+    this.updateGoal.username = this.goal.username;
     this.display = true;
   }
 
   update() {
     this.display = false;
-    this.goalService.updateGoal(this.updateGoal, 'greg', 'greg').subscribe(goal =>
+    this.goalService.updateGoal(this.updateGoal).subscribe(goal =>
       this.goal = goal);
+  }
+
+  deleteGoal() {
+    this.goalService.deleteGoal(this.goal.id).subscribe(goal =>
+      {});
   }
 
 }

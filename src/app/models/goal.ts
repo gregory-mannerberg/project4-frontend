@@ -6,4 +6,5 @@ export interface Goal {
     targetDate: Date;
     targetAmount: number;
     currentAmount: number;
+    username: string;
 }
