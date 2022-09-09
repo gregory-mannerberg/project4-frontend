@@ -1,0 +1,45 @@
+<p>goal works!</p>
+<p-card header="{{goal.name}}" [style]="{width: '360px'}" styleClass="p-card-shadow">
+    <ng-template pTemplate="header">
+        <img alt="Card" src="{{goal.imageUrl}}">
+    </ng-template>
+    <div>{{goal.description}}</div>
+    <div>Amount Saved: {{goal.currentAmount | currency}}</div>
+    <div>Goal: {{goal.targetAmount | currency}}</div>
+    <div>Target Date: {{goal.targetDate | date}}</div>
+    <p-progressBar  [value]="goalProgress" [showValue]="false"></p-progressBar>
+    <ng-template pTemplate="footer">
+        <p-button label="Edit" icon="pi pi-check" (click)="showDialog()"></p-button>
+        <p-button label="Delete" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
+    </ng-template>
+</p-card>
+<p-dialog [(visible)]="display">
+    <div>
+        <label for="goal-name">Goal Name: </label>
+        <input id="goal-name" type="text" pInputText [(ngModel)]="updateGoal.name" />
+    </div>
+    <div>
+        <label for="goal-description">Description: </label>
+        <input id="goal-description" type="text" pInputText [(ngModel)]="updateGoal.description" />
+    </div>
+    <div>
+        <label for="goal-imageUrl">Image URL: </label>
+        <input type="text" pInputText [(ngModel)]="updateGoal.imageUrl" />
+    </div>
+    <div>
+        <label for="goal-targetDate">Target Date: </label>
+        <input type="date" pInputText [(ngModel)]="updateGoal.targetDate" />
+    </div>
+    <div>
+        <label for="goal-currentAmount">Current Savings: </label>
+        <input type="number" pInputText [(ngModel)]="updateGoal.currentAmount" />
+    </div>
+    <div>
+        <label for="goal-targetAmount">Savings Goal: </label>
+        <input type="number" pInputText [(ngModel)]="updateGoal.targetAmount" />
+    </div>
+    <p-button label="Submit" (onClick)="update()"></p-button>
+
+    
+
+</p-dialog>
